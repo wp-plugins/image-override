@@ -349,7 +349,7 @@ class cmb_Meta_Box {
 				}
 			} elseif ( $new && $new != $old ) {
 				update_post_meta( $post_id, $name, $new );
-			} elseif ( '' == $new && $old && $field['type'] != 'file' ) {
+			} elseif ( '' == $new && $old ) {
 				delete_post_meta( $post_id, $name, $old );
 			}
 		}

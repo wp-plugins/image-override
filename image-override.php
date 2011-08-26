@@ -16,33 +16,20 @@ class BE_Image_Override {
 	
 	public function __construct() {
 		$this->instance =& $this;
-		register_activation_hook( __FILE__, array( $this, 'activate' ) );
-		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		add_action( 'init', array( $this, 'init' ) );	
 	}
 	
-	public function activate() {
-		$all_image_sizes = $this->get_all_image_sizes();
-		if ( isset( $all_image_sizes ) )
-			add_option( 'be_image_override_image_sizes', $all_image_sizes );
-	}
-	
-	public function deactivate() {
-		delete_option( 'be_image_override_image_sizes' );
-	}
-
 	public function init() {
 		add_filter( 'cmb_meta_boxes', array( $this, 'create_metaboxes' ) );
 		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
-		add_action( 'image_override_display', array( $this, 'display' ), 10, 1 );
-		add_action( 'return_image_override_display', array( $this, 'return_display' ), 10, 2 );
+		add_filter( 'image_downsize', array( $this, 'image_override' ), 10, 3 );
 	}
 	
 	public function create_metaboxes( $meta_boxes ) {
 		
 		// Use 'image_override_post_types' filter to change what post types it applies to
 		$post_types = apply_filters( 'image_override_post_types', array_keys( get_post_types( array('show_ui' => true ) ) ) );
-		$all_image_sizes = get_option( 'be_image_override_image_sizes' );
+		$all_image_sizes = $this->get_all_image_sizes();
 		$sizes = array();
 		foreach ($all_image_sizes as $size => $attr )
 			$sizes[] = $size;
@@ -86,23 +73,15 @@ class BE_Image_Override {
 	    }
 	}
 	
-	public function display( $size = '' ) {
-		global $post;
-		echo $this->return_display( $post->ID, $size );
-	}
-	
-	public function return_display( $id = '', $size = '' ) { 
-		$override = get_post_meta( $id, 'image_override_'.$size, true );
+	public function image_override( $output, $id, $size ) {
+		$parent = get_post_ancestors( $id );
+		if( empty( $parent ) ) return $output;
 		
-		// If there's an override, use it!
-		if ( !empty( $override ) ) return '<img src="' . esc_url( $override ) . '" class="attachment-'. esc_attr( $size ) . '" alt="' . get_the_title($id) . '" title="' . get_the_title($id) .'" />';
+		$override = esc_url( get_post_meta( $parent[0], 'image_override_' . $size, true ) );
+		if (empty( $override) ) return $output;
 		
-		// If you're running genesis, let's try genesis_get_image next
-		if ( function_exists( 'genesis_get_image' ) )
-			return genesis_get_image( array( 'size' => $size ) );
-			
-		// If all else fails, do the standard post image
-		else return get_the_post_thumbnail( $id, $size );	
+		list($width, $height, $type) = @getimagesize($override);
+		return array( $override, $width, $height );
 	}
 	
 	public function get_all_image_sizes() {
