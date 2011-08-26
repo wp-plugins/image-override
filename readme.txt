@@ -28,7 +28,9 @@ If you change your image sizes, deactivate and then reactivate the plugin to upd
 
 5. Down below, in the Image Override metabox, upload an alternative image for one of the sizes, and save the post.
 
+== Screenshots ==
 
+1. The metabox that shows up on the Edit screen.
 
 == Changelog ==
 

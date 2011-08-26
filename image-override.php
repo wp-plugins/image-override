@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Image Override
-Plugin URI: http://www.billerickson.net
+Plugin URI: http://www.billerickson.net/image-override-plugin
 Description: Allows you to override WordPress' auto generated thumbnails. If you change your image sizes, deactivate and reactivate the plugin.
 Version: 1.0
 Author: Bill Erickson
@@ -21,13 +21,6 @@ class BE_Image_Override {
 		add_action( 'init', array( $this, 'init' ) );	
 	}
 	
-	public function init() {
-		add_filter( 'cmb_meta_boxes', array( $this, 'create_metaboxes' ) );
-		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
-		add_action( 'image_override_display', array( $this, 'display' ), 10, 1 );
-		add_action( 'return_image_override_display', array( $this, 'return_display' ), 10, 2 );
-	}
-	
 	public function activate() {
 		$all_image_sizes = $this->get_all_image_sizes();
 		if ( isset( $all_image_sizes ) )
@@ -38,6 +31,13 @@ class BE_Image_Override {
 		delete_option( 'be_image_override_image_sizes' );
 	}
 
+	public function init() {
+		add_filter( 'cmb_meta_boxes', array( $this, 'create_metaboxes' ) );
+		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
+		add_action( 'image_override_display', array( $this, 'display' ), 10, 1 );
+		add_action( 'return_image_override_display', array( $this, 'return_display' ), 10, 2 );
+	}
+	
 	public function create_metaboxes( $meta_boxes ) {
 		
 		// Use 'image_override_post_types' filter to change what post types it applies to
