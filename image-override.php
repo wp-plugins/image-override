@@ -2,7 +2,7 @@
 /*
 Plugin Name: Image Override
 Plugin URI: http://www.billerickson.net/image-override-plugin
-Description: Allows you to override WordPress' auto generated thumbnails. If you change your image sizes, deactivate and reactivate the plugin.
+Description: Allows you to override WordPress' auto generated thumbnails. 
 Version: 1.0
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
