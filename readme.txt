@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: image, thumbnail, featured, 
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.0
+Stable tag: 1.1
 
 Allows you to override WordPress' auto generated thumbnails. 
 
@@ -33,6 +33,9 @@ This plugin will add a metabox to every post type and allow you to modify every 
 1. The metabox that shows up on the Edit screen.
 
 == Changelog ==
+
+= 1.1 = 
+* Add localization
 
 = 1.0 = 
 * Initial release
