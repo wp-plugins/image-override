@@ -20,8 +20,14 @@ class BE_Image_Override {
 	}
 	
 	public function init() {
+		// Translations
+		load_plugin_textdomain( 'image-override', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		
+		// Setup Metabox
 		add_filter( 'cmb_meta_boxes', array( $this, 'create_metaboxes' ) );
 		add_action( 'init', array( $this, 'initialize_cmb_meta_boxes' ), 50 );
+		
+		// Image Override
 		add_filter( 'image_downsize', array( $this, 'image_override' ), 10, 3 );
 	}
 	
@@ -45,7 +51,7 @@ class BE_Image_Override {
 			
 				$fields[] = array(
 					'name' => ucwords( $size ), 
-					'desc' => 'This image size should be ' . $all_image_sizes[$size]['width'] . 'x' . $all_image_sizes[$size]['height'] . ( isset( $all_image_sizes[$size]['crop'] ) ? ' exactly' : '' ) . '.',
+					'desc' => __( 'This image size should be', 'image-override' ) . ' ' . $all_image_sizes[$size]['width'] . 'x' . $all_image_sizes[$size]['height'] . ( isset( $all_image_sizes[$size]['crop'] ) ? ' ' . __('exactly', 'image-override' ) : '' ) . '.',
 		            'id' => $prefix.$size,
 		            'type' => 'file'			
 				);
@@ -54,7 +60,7 @@ class BE_Image_Override {
 		
 			$meta_boxes[] = array(
 		    	'id' => 'image-override',
-			    'title' => 'Image Override',
+			    'title' => __( 'Image Override', 'image-override' ),
 			    'pages' => $post_types,
 				'context' => 'normal',
 				'priority' => 'high',
