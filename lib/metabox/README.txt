@@ -30,8 +30,8 @@ Coming soon.
 
 == Changelog ==
 
-= 0.6 = 
-* Use of filter to add metaboxes. Allows plugins to add metaboxes. Make sure to check if the cmb_Meta_Box class exists before requiring it (see example-functions.php), so that it doesn't get included twice by plugins.
+= 0.6 =
+* Added the ability to limit metaboxes to certain posts by id. props @billerickson
 
 = 0.5 =
 * Fixed define to prevent notices. props @destos 
