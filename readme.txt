@@ -28,10 +28,6 @@ This plugin will add a metabox to every post type and allow you to modify every 
 
 5. Any function you're currently using to display the image (ex: the_post_thumbnail( 'medium' ) ) will now display the new image if the override is applied to that size.
 
-== Screenshots ==
-
-1. The metabox that shows up on the Edit screen.
-
 == Changelog ==
 
 = 1.1 = 
