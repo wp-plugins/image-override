@@ -3,7 +3,7 @@ Contributors: billerickson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9K2YFSJAMLKE
 Tags: image, thumbnail, featured, 
 Requires at least: 3.0
-Tested up to: 3.2.1
+Tested up to: 3.4.1
 Stable tag: 1.1
 
 Allows you to override WordPress' auto generated thumbnails. 
@@ -14,7 +14,9 @@ When you upload an image, WordPress will automatically scale/crop it to many dif
 
 If you have images showing up in your theme already, there's nothing you need to do after activating this plugin. All WordPress functions that provide the thumbnail should now automatically work with your override image.
 
-This plugin will add a metabox to every post type and allow you to modify every image size (built-in and custom ones added using add_image_size). You can use two filters to change these (image_override_post_types and image_override_sizes). For examples, see the [Image Override Plugin website](http://www.billerickson.net/image-override-plugin).
+This plugin will add a metabox to every post type and allow you to modify every image size (built-in and custom ones added using add_image_size). You can use two filters to change these (image_override_post_types and image_override_sizes). For examples, see the documentation.
+
+[Documentation](https://github.com/billerickson/Image-Override/wiki) | [Support Forum](https://github.com/billerickson/Image-Override/issues)
 
 == Installation ==
 
