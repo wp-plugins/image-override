@@ -3,7 +3,7 @@
 Plugin Name: Image Override
 Plugin URI: http://www.billerickson.net/image-override-plugin
 Description: Allows you to override WordPress' auto generated thumbnails. 
-Version: 1.1
+Version: 1.2
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -83,6 +83,10 @@ class BE_Image_Override {
 		$parent = get_post_ancestors( $id );
 		if( empty( $parent ) ) return $output;
 		
+		// Only resize if size is a registered image size (string)
+		if( is_array( $size ) )
+			return $output;
+		
 		$override = esc_url( get_post_meta( $parent[0], 'image_override_' . $size, true ) );
 		if (empty( $override) ) return $output;
 		
@@ -119,4 +123,3 @@ class BE_Image_Override {
 }
 
 new BE_Image_Override;
-?>
