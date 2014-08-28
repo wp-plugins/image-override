@@ -16,7 +16,9 @@ If you have images showing up in your theme already, there's nothing you need to
 
 This plugin will add a metabox to every post type and allow you to modify every image size (built-in and custom ones added using add_image_size). You can use two filters to change these (image_override_post_types and image_override_sizes). For examples, see the documentation.
 
-[Documentation](https://github.com/billerickson/Image-Override/wiki) | [Support Forum](https://github.com/billerickson/Image-Override/issues)
+[Documentation](https://github.com/billerickson/Image-Override/wiki)
+
+**No support will be provided by the developer**
 
 == Installation ==
 
